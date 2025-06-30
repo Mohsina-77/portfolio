@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Velvet Elegance | THE CAKE - Premium Artisan Bakery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Product Detail Page Specific Styles */
+        .product-detail-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .product-detail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        
+        .product-gallery {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px 0 0 0;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #d4a762;
+        }
+        
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+        }
+        
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #222;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            color: #d4a762;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .product-options {
+            margin-bottom: 30px;
+        }
+        
+        .option-group {
+            margin-bottom: 20px;
+        }
+        
+        .option-title {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        
+        select, .flavor-options {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 15px;
+        }
+        
+        .flavor-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            border: none;
+            padding: 0;
+        }
+        
+        .flavor-option {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .flavor-option:hover, .flavor-option.selected {
+            border-color: #d4a762;
+            background: rgba(212, 167, 98, 0.1);
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: none;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-primary {
+            background: #d4a762;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #c29552;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .product-meta {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .meta-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+        }
+        
+        .meta-icon {
+            color: #d4a762;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-detail {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .main-image {
+                border-radius: 12px 12px 0 0;
+            }
+        }
+        
+        /* Order Form */
+        .order-form-container {
+            display: none;
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        
+        .order-form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            background: #d4a762;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .form-submit:hover {
+            background: #c29552;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="product-detail-container">
+        <div class="product-detail">
+            <div class="product-gallery">
+                <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cupcake Collection" class="main-image" id="mainImage">
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Cupcake Collection" class="thumbnail active" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Cupcake Closeup" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Cupcake Display" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1 class="product-title">Cupcake Collection</h1>
+                <div class="product-price">PKR 1,599</div>
+                <div class="product-badge">Popular</div>
+                
+                <p class="product-description">
+                    Our gourmet cupcake collection features an assortment of 12 beautifully decorated cupcakes 
+                    with various flavors and toppings. Perfect for parties, office events, or as a special treat. 
+                    Each cupcake is hand-decorated with premium ingredients and creative designs that will impress 
+                    both the eyes and the palate.
+                </p>
+                
+                <div class="product-options">
+                    <div class="option-group">
+                        <span class="option-title">Collection Size</span>
+                        <select>
+                            <option>6 Cupcakes</option>
+                            <option selected>12 Cupcakes</option>
+                            <option>24 Cupcakes</option>
+                            <option>36 Cupcakes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Flavor Selection</span>
+                        <div class="flavor-options">
+                            <div class="flavor-option selected">Assorted (Our Selection)</div>
+                            <div class="flavor-option">All Chocolate</div>
+                            <div class="flavor-option">All Vanilla</div>
+                            <div class="flavor-option">Custom Mix</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Occasion</span>
+                        <select>
+                            <option selected>Standard Decoration</option>
+                            <option>Birthday Theme</option>
+                            <option>Wedding Theme</option>
+                            <option>Holiday Theme</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="quantity-selector">
+                    <button class="quantity-btn" id="decreaseQty">-</button>
+                    <input type="number" class="quantity-input" id="quantity" value="1" min="1">
+                    <button class="quantity-btn" id="increaseQty">+</button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-primary" id="addToCart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn-secondary" id="customizeOrder">
+                        <i class="fas fa-palette"></i> Customize Order
+                    </button>
+                </div>
+                
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-box meta-icon"></i>
+                        <span>Elegant packaging included</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock meta-icon"></i>
+                        <span>Requires 24 hours notice</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-tag meta-icon"></i>
+                        <span>Free custom message topper</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- [Same Order Form] -->
+
+    <!-- Order Form (Hidden by default) -->
+    <div class="order-form-container" id="orderForm">
+        <h2 class="order-form-title">Complete Your Order</h2>
+        <form>
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Delivery Address</label>
+                <textarea class="form-input form-textarea" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Delivery Date</label>
+                <input type="date" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Special Instructions</label>
+                <textarea class="form-input form-textarea" placeholder="Any customization or special requests..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Selected Cake</label>
+                <input type="text" class="form-input" id="selectedCake" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Selected Size</label>
+                <input type="text" class="form-input" id="selectedSize" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Quantity</label>
+                <input type="text" class="form-input" id="selectedQty" readonly>
+            </div>
+            
+            <button type="submit" class="form-submit">Place Order</button>
+        </form>
+    </div>
+
+
+
+
+    <script>
+        // [Previous JavaScript with updated button ID]
+        document.getElementById('customizeOrder').addEventListener('click', function() {
+            alert('Custom cupcake order feature coming soon!');
+        });
+
+         // Change product image when thumbnail is clicked
+        function changeImage(element) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            // Update main image source
+            const newSrc = element.src.replace('200', '800');
+            mainImage.src = newSrc;
+            
+            // Update active thumbnail
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            element.classList.add('active');
+        }
+        
+        // Quantity controls
+        document.getElementById('decreaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantity');
+            if (parseInt(qtyInput.value) > 1) {
+                qtyInput.value = parseInt(qtyInput.value) - 1;
+            }
+        });
+        
+        document.getElementById('increaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantity');
+            qtyInput.value = parseInt(qtyInput.value) + 1;
+        });
+        
+        // Flavor selection
+        const flavorOptions = document.querySelectorAll('.flavor-option');
+        flavorOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                flavorOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        
+        // Buy Now button - show order form
+        document.getElementById('buyNow').addEventListener('click', function() {
+            const orderForm = document.getElementById('orderForm');
+            const cakeName = document.querySelector('.product-title').textContent;
+            const cakeSize = document.querySelector('select').value;
+            const cakeQty = document.getElementById('quantity').value;
+            
+            document.getElementById('selectedCake').value = cakeName;
+            document.getElementById('selectedSize').value = cakeSize;
+            document.getElementById('selectedQty').value = cakeQty;
+            
+            orderForm.style.display = 'block';
+            window.scrollTo({
+                top: orderForm.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Add to Cart button
+        document.getElementById('addToCart').addEventListener('click', function() {
+            const cakeName = document.querySelector('.product-title').textContent;
+            alert(`${cakeName} has been added to your cart!`);
+        });
+    
+    </script>
+</body>
+</html>

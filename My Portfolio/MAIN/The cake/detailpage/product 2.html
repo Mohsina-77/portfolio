@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridal Bliss | THE CAKE - Premium Artisan Bakery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Product Detail Page Specific Styles */
+        .product-detail-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .product-detail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        
+        .product-gallery {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px 0 0 0;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #d4a762;
+        }
+        
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+        }
+        
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #222;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            color: #d4a762;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .product-options {
+            margin-bottom: 30px;
+        }
+        
+        .option-group {
+            margin-bottom: 20px;
+        }
+        
+        .option-title {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        
+        select, .flavor-options {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 15px;
+        }
+        
+        .flavor-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            border: none;
+            padding: 0;
+        }
+        
+        .flavor-option {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .flavor-option:hover, .flavor-option.selected {
+            border-color: #d4a762;
+            background: rgba(212, 167, 98, 0.1);
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: none;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-primary {
+            background: #d4a762;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #c29552;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .product-meta {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .meta-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+        }
+        
+        .meta-icon {
+            color: #d4a762;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-detail {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .main-image {
+                border-radius: 12px 12px 0 0;
+            }
+        }
+        
+        /* Order Form */
+        .order-form-container {
+            display: none;
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        
+        .order-form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            background: #d4a762;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .form-submit:hover {
+            background: #c29552;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="product-detail-container">
+        <div class="product-detail">
+            <div class="product-gallery">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Bridal Bliss Wedding Cake" class="main-image" id="mainImage">
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Bridal Bliss Wedding Cake" class="thumbnail active" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1519869325930-281384150729?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Wedding Cake Detail" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Wedding Cake Side View" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1 class="product-title">Bridal Bliss</h1>
+                <div class="product-price">PKR 8,999</div>
+                <div class="product-badge new">New</div>
+                
+                <p class="product-description">
+                    Our exquisite five-tier wedding masterpiece is designed to be the centerpiece of your special day. 
+                    Featuring delicate sugar flowers, elegant piping work, and fresh floral accents, this cake combines 
+                    classic elegance with modern design. Each tier can be customized with different flavors to please 
+                    all your guests.
+                </p>
+                
+                <div class="product-options">
+                    <div class="option-group">
+                        <span class="option-title">Number of Tiers</span>
+                        <select>
+                            <option>3 Tiers (Serves 50-60)</option>
+                            <option selected>5 Tiers (Serves 80-100)</option>
+                            <option>7 Tiers (Serves 120-150)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Flavor Combinations</span>
+                        <div class="flavor-options">
+                            <div class="flavor-option selected">Classic Vanilla & Chocolate</div>
+                            <div class="flavor-option">Red Velvet & Cheesecake</div>
+                            <div class="flavor-option">Lemon & Raspberry</div>
+                            <div class="flavor-option">Custom Combination</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Decoration Style</span>
+                        <select>
+                            <option selected>Fresh Flowers</option>
+                            <option>Sugar Flowers</option>
+                            <option>Minimalist Geometric</option>
+                            <option>Lace Design</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="quantity-selector">
+                    <button class="quantity-btn" id="decreaseQty">-</button>
+                    <input type="number" class="quantity-input" id="quantity" value="1" min="1">
+                    <button class="quantity-btn" id="increaseQty">+</button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-primary" id="addToCart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn-secondary" id="bookConsultation">
+                        <i class="fas fa-calendar-check"></i> Book Consultation
+                    </button>
+                </div>
+                
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-rings-wedding meta-icon"></i>
+                        <span>Includes complimentary cake tasting session</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock meta-icon"></i>
+                        <span>Requires 4 weeks advance notice</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-truck meta-icon"></i>
+                        <span>Professional delivery and setup included</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-star meta-icon"></i>
+                        <span>Includes anniversary cake for 1st year</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // [Same JavaScript as previous with updated button ID]
+        document.getElementById('bookConsultation').addEventListener('click', function() {
+            alert('Wedding cake consultation booking feature coming soon!');
+        });
+    </script>
+</body>
+</html>

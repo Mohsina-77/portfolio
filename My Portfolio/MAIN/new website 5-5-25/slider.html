@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        .container{
+            margin:100px 0 0 200px;
+            width: 70%;
+            height: 450px;
+            display:flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .container img {
+            width:10%;
+            height:100%;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid red;
+            transition: all ease-in-out 0.5s;
+
+        }
+        .container img:hover{
+            width:45%
+        }
+        h1{
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cars Slider</h1>
+    <div class="container">
+        <img src="images/img.jpg" alt="">
+        <img src="images/img5.jpg" alt="">
+        <img src="images/img2.jpg" alt="">
+        <img src="images/img3.jpg" alt="">
+        <img src="images/img4.jpg" alt="">
+
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Anniversary | THE CAKE - Premium Artisan Bakery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* [Same base CSS styles from previous pages] */
+ .product-detail-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .product-detail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        
+        .product-gallery {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px 0 0 0;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #d4a762;
+        }
+        
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+        }
+        
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #222;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            color: #d4a762;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .product-options {
+            margin-bottom: 30px;
+        }
+        
+        .option-group {
+            margin-bottom: 20px;
+        }
+        
+        .option-title {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        
+        select, .flavor-options {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 15px;
+        }
+        
+        .flavor-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            border: none;
+            padding: 0;
+        }
+        
+        .flavor-option {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .flavor-option:hover, .flavor-option.selected {
+            border-color: #d4a762;
+            background: rgba(212, 167, 98, 0.1);
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: none;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-primary {
+            background: #d4a762;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #c29552;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .product-meta {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .meta-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+        }
+        
+        .meta-icon {
+            color: #d4a762;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-detail {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .main-image {
+                border-radius: 12px 12px 0 0;
+            }
+        }
+        
+        /* Order Form */
+        .order-form-container {
+            display: none;
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        
+        .order-form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            background: #d4a762;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .form-submit:hover {
+            background: #c29552;
+        }
+
+        
+        /* Golden Anniversary Special Styles */
+        .gold-accent {
+            color: #d4a762;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #d4a762 0%, #f1c40f 100%);
+            color: white;
+            border: none;
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #c29552 0%, #e6b30b 100%);
+        }
+    </style>
+</head>
+<body>
+   
+
+    <!-- Golden Anniversary Product Detail -->
+    <div class="product-detail-container">
+        <div class="product-detail">
+            <div class="product-gallery">
+                <img src="https://images.unsplash.com/photo-1519869325930-281384150729?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Golden Anniversary Cake" class="main-image" id="mainImage">
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1519869325930-281384150729?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Full Cake View" class="thumbnail active" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Golden Details" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Cake Side View" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1 class="product-title">Golden <span class="gold-accent">Anniversary</span></h1>
+                <div class="product-price">PKR 3,499</div>
+                
+                <p class="product-description">
+                    Celebrate life's golden moments with our exquisite golden-themed anniversary cake. 
+                    Featuring edible gold leaf accents, delicate sugar flowers with golden dusting, 
+                    and our signature vanilla bean cake with raspberry filling. Each tier is wrapped 
+                    in golden fondant ribbons for a truly luxurious celebration centerpiece.
+                </p>
+                
+               
+                    
+                    <div class="option-group">
+                        <span class="option-title">Gold Accent Type</span>
+                        <div class="flavor-options">
+                            <div class="flavor-option selected">Edible Gold Leaf</div>
+                            <div class="flavor-option">Gold Dust</div>
+                            <div class="flavor-option">Gold Foil</div>
+                            <div class="flavor-option">Gold Painted Details</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Flavor Combination</span>
+                        <select>
+                            <option selected>Vanilla Bean + Raspberry</option>
+                            <option>Chocolate + Caramel</option>
+                            <option>Red Velvet + Cream Cheese</option>
+                            <option>Lemon + Blueberry</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Personalization</span>
+                        <input type="text" class="form-input" placeholder="Couple names/anniversary year">
+                    </div>
+                </div>
+                
+                <div class="quantity-selector">
+                    <button class="quantity-btn" id="decreaseQty">-</button>
+                    <input type="number" class="quantity-input" id="quantity" value="1" min="1">
+                    <button class="quantity-btn" id="increaseQty">+</button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-gold btn-primary" id="addToCart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn-secondary" id="bookConsultation">
+                        <i class="fas fa-calendar-star"></i> Plan Your Event
+                    </button>
+                </div>
+                
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-gem gold-accent"></i>
+                        <span>Includes complimentary golden cake topper</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock meta-icon"></i>
+                        <span>Requires 3 weeks advance notice</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-truck meta-icon"></i>
+                        <span>Professional setup with golden stand included</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-certificate gold-accent"></i>
+                        <span>Kosher-certified edible gold</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Luxury Consultation Form -->
+    <div class="order-form-container" id="consultationForm" style="background:#fffaf0;">
+        <h2 class="order-form-title"><span class="gold-accent">Luxury</span> Event Consultation</h2>
+        <form>
+            <div class="form-group">
+                <label class="form-label">Event Date</label>
+                <input type="date" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Your Name</label>
+                <input type="text" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Contact Number</label>
+                <input type="tel" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Guest Count</label>
+                <input type="number" class="form-input" min="10">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Special Requests</label>
+                <textarea class="form-input form-textarea" placeholder="Theme colors, floral preferences, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Selected Cake</label>
+                <input type="text" class="form-input" value="Golden Anniversary" readonly>
+            </div>
+            
+            <button type="submit" class="form-submit btn-gold">Request Consultation</button>
+        </form>
+    </div>
+
+    <script>
+        // Image Gallery Functionality
+        function changeImage(element) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            const newSrc = element.src.replace('200', '800');
+            mainImage.src = newSrc;
+            
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            element.classList.add('active');
+        }
+        
+        // Quantity Controls
+        document.getElementById('decreaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantity');
+            if (parseInt(qtyInput.value) > 1) {
+                qtyInput.value = parseInt(qtyInput.value) - 1;
+            }
+        });
+        
+        document.getElementById('increaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantity');
+            qtyInput.value = parseInt(qtyInput.value) + 1;
+        });
+        
+        // Gold Accent Selection
+        const accentOptions = document.querySelectorAll('.flavor-option');
+        accentOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                accentOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        
+        // Consultation Button
+        document.getElementById('bookConsultation').addEventListener('click', function() {
+            document.getElementById('consultationForm').style.display = 'block';
+            window.scrollTo({
+                top: document.getElementById('consultationForm').offsetTop - 20,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Add to Cart
+        document.getElementById('addToCart').addEventListener('click', function() {
+            alert('Golden Anniversary cake added to cart!\n\nWe recommend booking a consultation for event cakes.');
+        });
+    </script>
+</body>
+</html>

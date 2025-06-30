@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Wonderland | THE CAKE - Premium Artisan Bakery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* [Same base CSS styles from previous pages] */
+          /* Product Detail Page Specific Styles */
+        .product-detail-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .product-detail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        
+        .product-gallery {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px 0 0 0;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #d4a762;
+        }
+        
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+        }
+        
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #222;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            color: #d4a762;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .product-options {
+            margin-bottom: 30px;
+        }
+        
+        .option-group {
+            margin-bottom: 20px;
+        }
+        
+        .option-title {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        
+        select, .flavor-options {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 15px;
+        }
+        
+        .flavor-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            border: none;
+            padding: 0;
+        }
+        
+        .flavor-option {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .flavor-option:hover, .flavor-option.selected {
+            border-color: #d4a762;
+            background: rgba(212, 167, 98, 0.1);
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: none;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-primary {
+            background: #d4a762;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #c29552;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .product-meta {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .meta-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+        }
+        
+        .meta-icon {
+            color: #d4a762;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-detail {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .main-image {
+                border-radius: 12px 12px 0 0;
+            }
+        }
+        
+        /* Order Form */
+        .order-form-container {
+            display: none;
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        
+        .order-form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            background: #d4a762;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .form-submit:hover {
+            background: #c29552;
+        }
+        
+        /* Winter Wonderland Special Styles */
+        .winter-theme {
+            color: #3498db;
+        }
+        .btn-winter {
+            background: linear-gradient(135deg, #3498db 0%, #9b59b6 100%);
+            color: white;
+            border: none;
+        }
+        .btn-winter:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #8e44ad 100%);
+        }
+        .snowflake-icon {
+            color: #3498db;
+        }
+        .winter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .winter-option {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+            background-size: cover;
+            background-position: center;
+        }
+        .winter-option:hover, .winter-option.selected {
+            border-color: #3498db;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    
+
+    <!-- Winter Wonderland Product Detail -->
+    <div class="product-detail-container">
+        <div class="product-detail">
+            <div class="product-gallery">
+                <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Winter Wonderland Cake" class="main-image" id="mainImage">
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Full Cake View" class="thumbnail active" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1519869325930-281384150729?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Snowflake Details" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1518633629429-8a4f5a63fb8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Icy Blue Side View" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1 class="product-title">Winter <span class="winter-theme">Wonderland</span></h1>
+                <div class="product-price">PKR 2,199</div>
+                
+                <p class="product-description">
+                    Celebrate the magic of winter with our seasonal masterpiece featuring edible 
+                    snowflake decorations, sparkling sugar dust, and cool blue icing. This vanilla 
+                    and peppermint layered cake with white chocolate ganache is as delicious as it 
+                    is beautiful - perfect for holiday parties, winter weddings, or seasonal gatherings.
+                </p>
+                
+                <div class="product-options">
+                    <div class="option-group">
+                        <span class="option-title">Size</span>
+                        <select>
+                            <option>Small (6" round, serves 8-10)</option>
+                            <option selected>Medium (8" round, serves 12-15)</option>
+                            <option>Large (10" round, serves 20-25)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Winter Themes</span>
+                        <div class="winter-options">
+                            <div class="winter-option selected" style="background-image:url('https://images.unsplash.com/photo-1518633629429-8a4f5a63fb8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')" onclick="selectWinterTheme(this,'Snowflake')"></div>
+                            <div class="winter-option" style="background-image:url('https://images.unsplash.com/photo-1453873531674-2151bcd01707?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')" onclick="selectWinterTheme(this,'Ski Lodge')"></div>
+                            <div class="winter-option" style="background-image:url('https://images.unsplash.com/photo-1483721310020-03333e577078?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')" onclick="selectWinterTheme(this,'Northern Lights')"></div>
+                            <div class="winter-option" style="background-image:url('https://images.unsplash.com/photo-1518481852452-9415b262eba4?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')" onclick="selectWinterTheme(this,'Reindeer')"></div>
+                        </div>
+                        <input type="text" id="selectedWinterTheme" value="Snowflake" readonly class="form-input" style="margin-top:10px">
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Flavor Profile</span>
+                        <div class="flavor-options">
+                            <div class="flavor-option selected">Vanilla Peppermint</div>
+                            <div class="flavor-option">Chocolate Mint</div>
+                            <div class="flavor-option">Eggnog Spice</div>
+                            <div class="flavor-option">Gingerbread</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Personal Message</span>
+                        <input type="text" class="form-input" placeholder="Happy Holidays! etc." id="winterMessage">
+                    </div>
+                </div>
+                
+                <div class="quantity-selector">
+                    <button class="quantity-btn" id="decreaseQty">-</button>
+                    <input type="number" class="quantity-input" id="quantity" value="1" min="1">
+                    <button class="quantity-btn" id="increaseQty">+</button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-winter btn-primary" id="addToCart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn-secondary" id="holidayDelivery">
+                        <i class="fas fa-snowflake"></i> Schedule Holiday Delivery
+                    </button>
+                </div>
+                
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-snowflake snowflake-icon"></i>
+                        <span>Includes edible silver snowflake decorations</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock meta-icon"></i>
+                        <span>Requires 5 days notice during holiday season</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-gift snowflake-icon"></i>
+                        <span>Comes in special holiday packaging</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-leaf meta-icon"></i>
+                        <span>Vegetarian (contains dairy and eggs)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Holiday Delivery Form -->
+    <div class="order-form-container" id="holidayForm" style="background:#f5f9ff;">
+        <h2 class="order-form-title"><span class="winter-theme">Holiday</span> Delivery Scheduling</h2>
+        <form>
+            <div class="form-group">
+                <label class="form-label">Delivery Date</label>
+                <input type="date" class="form-input" required min="2023-12-01" max="2024-01-10">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Recipient Name</label>
+                <input type="text" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Special Occasion</label>
+                <select class="form-input">
+                    <option>Christmas</option>
+                    <option>New Year's</option>
+                    <option>Winter Wedding</option>
+                    <option>Corporate Holiday Party</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Gift Message</label>
+                <textarea class="form-input form-textarea" placeholder="Season's Greetings! etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Selected Cake</label>
+                <input type="text" class="form-input" value="Winter Wonderland" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Selected Theme</label>
+                <input type="text" class="form-input" id="formWinterTheme" readonly>
+            </div>
+            
+            <button type="submit" class="form-submit btn-winter">Schedule Holiday Delivery</button>
+        </form>
+    </div>
+
+    <script>
+        // Image Gallery Functionality
+        function changeImage(element) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            const newSrc = element.src.replace('200', '800');
+            mainImage.src = newSrc;
+            
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            element.classList.add('active');
+        }
+        
+        // Winter Theme Selection
+        function selectWinterTheme(element, themeName) {
+            const winterOptions = document.querySelectorAll('.winter-option');
+            winterOptions.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('selectedWinterTheme').value = themeName;
+            document.getElementById('formWinterTheme').value = themeName;
+        }
+        
+        // Quantity Controls
+        document.getElementById('decreaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantity');
+            if (parseInt(qtyInput.value) > 1) {
+                qtyInput.value = parseInt(qtyInput.value) - 1;
+            }
+        });
+        
+        document.getElementById('increaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantity');
+            qtyInput.value = parseInt(qtyInput.value) + 1;
+        });
+        
+        // Flavor Selection
+        const flavorOptions = document.querySelectorAll('.flavor-option');
+        flavorOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                flavorOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        
+        // Holiday Delivery Button
+        document.getElementById('holidayDelivery').addEventListener('click', function() {
+            const theme = document.getElementById('selectedWinterTheme').value;
+            document.getElementById('formWinterTheme').value = theme;
+            
+            document.getElementById('holidayForm').style.display = 'block';
+            window.scrollTo({
+                top: document.getElementById('holidayForm').offsetTop - 20,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Add to Cart
+        document.getElementById('addToCart').addEventListener('click', function() {
+            const message = document.getElementById('winterMessage').value;
+            const theme = document.getElementById('selectedWinterTheme').value;
+            
+            if(message) {
+                alert(`"${theme}" theme cake with message "${message}" added to cart!`);
+            } else {
+                alert(`${theme} theme winter cake added to cart!`);
+            }
+        });
+    </script>
+</body>
+</html>

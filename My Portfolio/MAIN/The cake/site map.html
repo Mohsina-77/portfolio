@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Map | THE CAKE - Premium Artisan Bakery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+   
+<style>
+    /* Site Map Page Styles */
+    :root {
+        --gold: #d4a762;
+        --dark-gold: #c29552;
+        --light-gold: #f5e8d5;
+        --dark: #333;
+        --medium: #555;
+        --light: #777;
+        --lighter: #f9f9f9;
+    }
+    
+    .sitemap-hero {
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/banner\ new.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 350px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        margin-bottom: 60px;
+        position: relative;
+    }
+    
+    .sitemap-hero::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23f9f9f9" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23f9f9f9" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23f9f9f9"/></svg>') no-repeat;
+        background-size: cover;
+    }
+    
+    .hero-content h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        font-weight: 300;
+    }
+    
+    .sitemap-section {
+        padding: 40px 0 100px;
+        background-color: var(--lighter);
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .sitemap-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+    
+    .sitemap-column {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+        border-top: 4px solid var(--gold);
+    }
+    
+    .sitemap-column:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .sitemap-heading {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        color: var(--dark);
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--light-gold);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .gold-icon {
+        color: var(--gold);
+        font-size: 1.3rem;
+    }
+    
+    .sitemap-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .sitemap-list li {
+        margin-bottom: 15px;
+        position: relative;
+        padding-left: 10px;
+    }
+    
+    .sitemap-list li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 5px;
+        height: 5px;
+        background-color: var(--gold);
+        border-radius: 50%;
+    }
+    
+    .sitemap-list a {
+        color: var(--medium);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s;
+        display: block;
+        padding: 8px 0;
+        position: relative;
+    }
+    
+    .sitemap-list a:hover {
+        color: var(--gold);
+        padding-left: 8px;
+    }
+    
+    .sitemap-list a:hover::after {
+        content: '→';
+        position: absolute;
+        right: -15px;
+        color: var(--gold);
+    }
+    
+    .sitemap-sublist {
+        list-style: none;
+        padding-left: 20px;
+        margin-top: 12px;
+        border-left: 2px solid var(--light-gold);
+    }
+    
+    .sitemap-sublist li {
+        margin-bottom: 10px;
+    }
+    
+    .sitemap-sublist a {
+        font-size: 0.95rem;
+        color: var(--light);
+    }
+    
+    .sitemap-sublist a:hover {
+        color: var(--gold);
+    }
+    
+    .sitemap-search {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        border: 1px solid var(--light-gold);
+    }
+    
+    .sitemap-search h3 {
+        font-family: 'Playfair Display', serif;
+        color: var(--dark);
+        margin-bottom: 25px;
+        font-size: 1.8rem;
+    }
+    
+    .search-container {
+        display: flex;
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .search-container input {
+        flex: 1;
+        padding: 15px 20px;
+        border: 2px solid var(--light-gold);
+        border-radius: 8px 0 0 8px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        transition: all 0.3s;
+    }
+    
+    .search-container input:focus {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(212, 167, 98, 0.2);
+    }
+    
+    .search-button {
+        padding: 0 30px;
+        background: var(--gold);
+        color: white;
+        border: none;
+        border-radius: 0 8px 8px 0;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s;
+        font-size: 16px;
+    }
+    
+    .search-button:hover {
+        background: var(--dark-gold);
+    }
+    
+    /* Animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .sitemap-column {
+        animation: fadeIn 0.6s ease-out forwards;
+        opacity: 0;
+    }
+    
+    .sitemap-column:nth-child(1) { animation-delay: 0.1s; }
+    .sitemap-column:nth-child(2) { animation-delay: 0.2s; }
+    .sitemap-column:nth-child(3) { animation-delay: 0.3s; }
+    .sitemap-column:nth-child(4) { animation-delay: 0.4s; }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .sitemap-hero {
+            height: 280px;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.2rem;
+        }
+        
+        .hero-content p {
+            font-size: 1rem;
+        }
+        
+        .sitemap-container {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .search-container {
+            flex-direction: column;
+        }
+        
+        .search-container input {
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .search-button {
+            border-radius: 8px;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .sitemap-search h3 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="products-navbar">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <span class="gold-text">THE</span> CAKE
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Menu</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="site map.html" class="active">Site map</a></li>
+                    <li><a href="sign up.html">Sign up</a></li>
+                    <li><a href="contect.html" class="cta-button">Contact us</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Site Map Hero Section -->
+    <header class="sitemap-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Explore Our Bakery</h1>
+                <p>Navigate through our premium artisan bakery website with this beautiful visual guide</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Site Map Content -->
+    <section class="sitemap-section">
+        <div class="container">
+            <div class="sitemap-container">
+                <div class="sitemap-column">
+                    <h2 class="sitemap-heading">
+                        <i class="fas fa-home gold-icon"></i> Main Pages
+                    </h2>
+                    <ul class="sitemap-list">
+                        <li><a href="index.html">Home Page</a></li>
+                        <li><a href="about.html">About Us</a>
+                            <ul class="sitemap-sublist">
+                                <li><a href="about.html#story">Our Story</a></li>
+                                <li><a href="about.html#team">Our Team</a></li>
+                                <li><a href="about.html#values">Our Values</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="products.html">Menu & Products</a>
+                            <ul class="sitemap-sublist">
+                                <li><a href="products.html#birthday">Birthday Cakes</a></li>
+                                <li><a href="products.html#wedding">Wedding Cakes</a></li>
+                                <li><a href="products.html#specialty">Specialty Cakes</a></li>
+                                <li><a href="products.html#cupcakes">Cupcakes</a></li>
+                                <li><a href="products.html#seasonal">Seasonal Offerings</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="events.html">Events & Workshops</a></li>
+                    </ul>
+                </div>
+
+                <div class="sitemap-column">
+                    <h2 class="sitemap-heading">
+                        <i class="fas fa-user gold-icon"></i> Customer Area
+                    </h2>
+                    <ul class="sitemap-list">
+                        <li><a href="sign up.html">Create Account</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="testimonials.html">Customer Testimonials</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="rewards.html">Rewards Program</a></li>
+                    </ul>
+                </div>
+
+                <div class="sitemap-column">
+                    <h2 class="sitemap-heading">
+                        <i class="fas fa-info-circle gold-icon"></i> Information
+                    </h2>
+                    <ul class="sitemap-list">
+                        <li><a href="contact.html">Contact Us</a>
+                            <ul class="sitemap-sublist">
+                                <li><a href="contact.html#locations">Our Locations</a></li>
+                                <li><a href="contact.html#hours">Business Hours</a></li>
+                                <li><a href="contact.html#form">Contact Form</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="faq.html">FAQs</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="sitemap-column">
+                    <h2 class="sitemap-heading">
+                        <i class="fas fa-file-alt gold-icon"></i> Legal Pages
+                    </h2>
+                    <ul class="sitemap-list">
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="shipping.html">Shipping & Returns</a></li>
+                        <li><a href="allergens.html">Allergen Information</a></li>
+                        <li><a href="catering.html">Catering Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sitemap-search">
+                <h3>Can't find what you're looking for?</h3>
+                <div class="search-container">
+                    <input type="text" placeholder="Search our website...">
+                    <button class="search-button">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu toggle functionality
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Search functionality
+        document.querySelector('.search-button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-container input').value;
+            if(searchTerm.trim() !== '') {
+                alert('Search functionality would normally redirect to search results for: ' + searchTerm);
+                // In a real implementation, you would redirect to search page with query parameter
+                // window.location.href = 'search.html?q=' + encodeURIComponent(searchTerm);
+            }
+        });
+        
+        // Add animation class when scrolling to elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, {threshold: 0.1});
+            
+            document.querySelectorAll('.sitemap-column').forEach(column => {
+                observer.observe(column);
+            });
+        });
+    </script>
+</body>
+</html>

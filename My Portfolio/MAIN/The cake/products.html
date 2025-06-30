@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Menu | THE CAKE - Premium Artisan Bakery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+   
+</head>
+<body>
+    <!-- Navbar from Homepage -->
+    <div class="products-navbar">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <span class="gold-text">THE</span> CAKE
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html" class="active">Menu</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="events.html">Site map</a></li>
+                        <li><a href="sign up.html">Sign up</a></li>
+                    <li><a href="contect.html" class="cta-button">Contect us</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Premium Header -->
+    <header class="hero product-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Cake Collection</h1>
+                <p>Each masterpiece crafted with passion and premium ingredients</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Product Categories -->
+    <section class="product-categories">
+        <div class="container">
+            <ul class="category-filter">
+                <li class="active" data-category="all">All Cakes</li>
+                <li data-category="birthday">Birthday</li>
+                <li data-category="wedding">Wedding</li>
+                <li data-category="specialty">Specialty</li>
+                <li data-category="cupcakes">Cupcakes</li>
+                <li data-category="seasonal">Seasonal</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="product-listing">
+        <div class="container">
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="birthday">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Red Velvet Cake">
+                        <div class="product-badge">Bestseller</div>
+                    </div>
+                    <div class="product-details">
+                        <h3>Red Velvet Elegance</h3>
+                        <p class="product-desc">Layered with cream cheese frosting and edible gold leaf accents</p>
+                        <div class="product-meta">
+                             <button class="zoom-btn" style="position:absolute; bottom:10px; right:10px; background-color:#b38e2e; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Zoom</button>
+
+                            <span class="price">PKR 1,299</span>
+                            <a href="detailpage/product 1.html"><button class="view-detail-btn" >View Detail</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-category="wedding">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wedding Cake">
+                        <div class="product-badge new">New</div>
+                    </div>
+                    <div class="product-details">
+                        <h3>Bridal Bliss</h3>
+                        <p class="product-desc">Five-tier wedding masterpiece with fresh floral accents</p>
+                        <div class="product-meta">
+                            <button class="zoom-btn" style="position:absolute; bottom:10px; right:10px; background-color:#b38e2e; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Zoom</button>
+
+                            <span class="price">PKR 8,999</span>
+                           <a href="detailpage/product 2.html"><button class="view-detail-btn">View Detail</button></a> 
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-category="specialty">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chocolate Cake">
+                    </div>
+                    <div class="product-details">
+                        <h3>Chocolate Decadence</h3>
+                        <p class="product-desc">Triple-layer Belgian chocolate with raspberry filling</p>
+                        <div class="product-meta">
+                            <button class="zoom-btn" style="position:absolute; bottom:10px; right:10px; background-color:#b38e2e; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Zoom</button>
+
+                            <span class="price">PKR 1,499</span>
+                            <a href="detailpage/product 3.html"><button class="view-detail-btn">View Detail</button></a>
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-category="birthday">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1552689486-f6773047d19f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Vanilla Cake">
+                    </div>
+                    <div class="product-details">
+                        <h3>Vanilla Dream</h3>
+                        <p class="product-desc">Classic vanilla bean with Swiss buttercream frosting</p>
+                        <div class="product-meta">
+                            <button class="zoom-btn" style="position:absolute; bottom:10px; right:10px; background-color:#b38e2e; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Zoom</button>
+
+                            <span class="price">PKR 1,199</span>
+                            <a href="detailpage/product 4.html"><button class="view-detail-btn">View Detail</button></a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card" data-category="cupcakes">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cupcakes">
+                        <div class="product-badge">Popular</div>
+                    </div>
+                    <div class="product-details">
+                        <h3>Cupcake Collection</h3>
+                        <p class="product-desc">Assortment of 12 gourmet cupcakes with various flavors</p>
+                        <div class="product-meta">
+                            <button class="zoom-btn" style="position:absolute; bottom:10px; right:10px; background-color:#b38e2e; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Zoom</button>
+
+                            <span class="price">PKR 1,599</span>
+                            <a href="detailpage/product 5.html"><button class="view-detail-btn">View Detail</button></a>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card" data-category="specialty">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cheesecake">
+                    </div>
+                    <div class="product-details">
+                        <h3>New York Cheesecake</h3>
+                        <p class="product-desc">Classic cheesecake with berry compote topping</p>
+                        <div class="product-meta">
+                            <button class="zoom-btn" style="position:absolute; bottom:10px; right:10px; background-color:#b38e2e; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Zoom</button>
+
+                            <span class="price">PKR 1,799</span>
+                            <a href="detailpage/product 6.html"><button class="view-detail-btn">View Detail</button></a>                                
+                            
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card" data-category="wedding">
+                    <div class="product-image">
+                        <img src="images/aniversary cake 4.jpg" alt="Anniversary Cake">
+                    </div>
+                    <div class="product-details">
+                        <h3>Golden Anniversary</h3>
+                        <p class="product-desc">Elegant golden-themed celebration cake with edible gold</p>
+                        <div class="product-meta">
+                            <button class="zoom-btn" style="position:absolute; bottom:10px; right:10px; background-color:#b38e2e; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Zoom</button>
+
+                            <span class="price">PKR 3,499</span>
+                            <a href="detailpage/product 7.html"><button class="view-detail-btn">View Detail</button></a>                                
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card" data-category="birthday">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kids Cake">
+                        <div class="product-badge new">New</div>
+                    </div>
+                    <div class="product-details">
+                        <h3>Kids Fantasy</h3>
+                        <p class="product-desc">Colorful themed cake for children's birthdays</p>
+                        <div class="product-meta">
+                            <button class="zoom-btn" style="position:absolute; bottom:10px; right:10px; background-color:#b38e2e; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Zoom</button>
+
+                            <span class="price">PKR 1,899</span>
+                            <a href="detailpage/product 8.html"><button class="view-detail-btn">View Detail</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 9 -->
+                <div class="product-card" data-category="seasonal">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Holiday Cake">
+                    </div>
+                    <div class="product-details">
+                        <h3>Winter Wonderland</h3>
+                        <p class="product-desc">Seasonal holiday cake with snowflake decorations</p>
+                        <div class="product-meta">
+                            <button class="zoom-btn" style="position:absolute; bottom:10px; right:10px; background-color:#b38e2e; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Zoom</button>
+
+                            <span class="price">PKR 2,199</span>
+                           <a href="detailpage/product 9.html"><button class="view-detail-btn">View Detail</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 10 -->
+                <div class="product-card" data-category="specialty">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Mousse Cake">
+                    </div>
+                    <div class="product-details">
+                        <h3>Chocolate Mousse</h3>
+                        <p class="product-desc">Silky chocolate mousse layered with sponge cake</p>
+                        <div class="product-meta">
+                            <button class="zoom-btn" style="position:absolute; bottom:10px; right:10px; background-color:#b38e2e; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">Zoom</button>
+                            <span class="price">PKR 1,699</span>
+                            <a href="detailpage/product 10.html"><button class="view-detail-btn">View Detail</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Footer -->
+    <footer class="premium-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>THE CAKE</h3>
+                    <p>Where every celebration begins with something sweet.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Cake Menu</a></li>
+                        <li><a href="events.html">Occasions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <address>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Bakery Street, Mumbai</p>
+                        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                        <p><i class="fas fa-envelope"></i> orders@thecake.in</p>
+                    </address>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 The Cake. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+  document.querySelectorAll('.view-detail').forEach(button => {
+    button.addEventListener('click', function () {
+      const product = {
+        name: this.dataset.name,
+        desc: this.dataset.desc,
+        price: this.dataset.price,
+        img: this.dataset.img
+      };
+      localStorage.setItem('selectedProduct', JSON.stringify(product));
+      window.location.href = 'order.html';
+    });
+  });
+</script>
+
+    <script>
+        // Category Filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.category-filter li');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    const products = document.querySelectorAll('.product-card');
+                    
+                    products.forEach(product => {
+                        if (category === 'all' || product.getAttribute('data-category').includes(category)) {
+                            product.style.display = 'block';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+                    // Get the product name
+                    const productName = this.closest('.product-card').querySelector('h3').textContent;
+                    alert(`You clicked to view details for: ${productName}`);
+                    // In a real implementation, you would redirect to a product detail page
+                    // window.location.href = `product-detail.html?product=${encodeURIComponent(productName)}`;
+                });
+            
+    
+    </script>
+
+
+<!-- Zoom Modal Overlay -->
+<div id="zoomModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+    <span id="closeZoom" style="position:absolute; top:20px; right:30px; font-size:30px; color:white; cursor:pointer;">&times;</span>
+    <img id="zoomedImage" src="" alt="Zoomed Cake" style="max-width:90%; max-height:90%; border:5px solid white; border-radius:10px;">
+</div>
+
+<script>
+    // Zoom functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        const zoomModal = document.getElementById('zoomModal');
+        const zoomedImage = document.getElementById('zoomedImage');
+        const closeZoom = document.getElementById('closeZoom');
+
+        document.querySelectorAll('.zoom-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const img = this.closest('.product-card').querySelector('img');
+                zoomedImage.src = img.src;
+                zoomModal.style.display = 'flex';
+            });
+        });
+
+        closeZoom.addEventListener('click', function () {
+            zoomModal.style.display = 'none';
+        });
+
+        // Close modal on outside click
+        zoomModal.addEventListener('click', function (e) {
+            if (e.target === zoomModal) {
+                zoomModal.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

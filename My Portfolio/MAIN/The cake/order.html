@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Cake | Sweet Delights</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #e76b74;
+      --light-bg: #fff9f7;
+      --text: #333;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .header {
+      background: var(--primary);
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    .form-content {
+      padding: 25px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+    }
+    textarea {
+      min-height: 100px;
+    }
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #d45a63;
+    }
+    .summary {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 25px 0;
+    }
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .total {
+      font-weight: bold;
+      border-top: 1px dashed #ddd;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 5px;
+    }
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><i class="fas fa-birthday-cake"></i> Order Your Cake</h1>
+    </div>
+    
+    <div class="form-content">
+      <form>
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="cake">Cake Selection</label>
+          <select id="cake">
+            <option>Classic Vanilla</option>
+            <option>Chocolate Fudge</option>
+            <option>Red Velvet</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="date">Delivery Date</label>
+          <input type="date" id="date" required>
+          <span class="note">Order at least 2 days in advance</span>
+        </div>
+        
+        <div class="form-group">
+          <label for="notes">Special Requests</label>
+          <textarea id="notes" placeholder="Allergies, decorations, etc."></textarea>
+        </div>
+        
+        <div class="summary">
+          <div class="summary-item">
+            <span>Classic Vanilla Cake</span>
+            <span>$29.99</span>
+          </div>
+          <div class="summary-item">
+            <span>Delivery</span>
+            <span>$5.99</span>
+          </div>
+          <div class="summary-item total">
+            <span>Total</span>
+            <span>$35.98</span>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn">Place Order</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

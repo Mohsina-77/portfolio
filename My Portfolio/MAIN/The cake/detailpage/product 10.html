@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocolate Mousse | THE CAKE - Premium Artisan Bakery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* [Same base CSS styles from previous pages] */
+
+          /* Product Detail Page Specific Styles */
+        .product-detail-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .product-detail {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        
+        .product-gallery {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px 0 0 0;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: #d4a762;
+        }
+        
+        .product-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+        }
+        
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #222;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            color: #d4a762;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .product-options {
+            margin-bottom: 30px;
+        }
+        
+        .option-group {
+            margin-bottom: 20px;
+        }
+        
+        .option-title {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        
+        select, .flavor-options {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 15px;
+        }
+        
+        .flavor-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            border: none;
+            padding: 0;
+        }
+        
+        .flavor-option {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .flavor-option:hover, .flavor-option.selected {
+            border-color: #d4a762;
+            background: rgba(212, 167, 98, 0.1);
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: none;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-primary {
+            background: #d4a762;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #c29552;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .product-meta {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .meta-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #666;
+        }
+        
+        .meta-icon {
+            color: #d4a762;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-detail {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .main-image {
+                border-radius: 12px 12px 0 0;
+            }
+        }
+        
+        /* Order Form */
+        .order-form-container {
+            display: none;
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        
+        .order-form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            background: #d4a762;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .form-submit:hover {
+            background: #c29552;
+        }
+        
+        /* Chocolate Mousse Special Styles */
+        .chocolate-theme {
+            color: #5d4037;
+        }
+        .btn-chocolate {
+            background: linear-gradient(135deg, #5d4037 0%, #8d6e63 100%);
+            color: white;
+            border: none;
+        }
+        .btn-chocolate:hover {
+            background: linear-gradient(135deg, #4e342e 0%, #795548 100%);
+        }
+        .mousse-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .mousse-option {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+            background-size: cover;
+            background-position: center;
+        }
+        .mousse-option:hover, .mousse-option.selected {
+            border-color: #5d4037;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    
+
+    <!-- Chocolate Mousse Product Detail -->
+    <div class="product-detail-container">
+        <div class="product-detail">
+            <div class="product-gallery">
+                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Chocolate Mousse Cake" class="main-image" id="mainImage">
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Full Cake View" class="thumbnail active" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Slice View" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Close-up" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1 class="product-title">Chocolate <span class="chocolate-theme">Mousse</span></h1>
+                <div class="product-price">PKR 1,699</div>
+                
+                <p class="product-description">
+                    Indulge in our silky chocolate mousse layered with delicate sponge cake and enrobed in 
+                    a glossy chocolate glaze. Made with premium Belgian chocolate, this luxurious dessert 
+                    features alternating layers of dark and milk chocolate mousse for a perfect balance of 
+                    richness and lightness. Topped with chocolate curls and gold accents.
+                </p>
+                
+                <div class="product-options">
+                    <div class="option-group">
+                        <span class="option-title">Size</span>
+                        <select>
+                            <option>Small (6" round, serves 8-10)</option>
+                            <option selected>Medium (8" round, serves 12-15)</option>
+                            <option>Large (10" round, serves 20-25)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Chocolate Intensity</span>
+                        <div class="mousse-options">
+                            <div class="mousse-option selected" style="background-image:url('https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')" onclick="selectMousseType(this,'Dark & Milk Blend')"></div>
+                            <div class="mousse-option" style="background-image:url('https://images.unsplash.com/photo-1542826438-bd32f43d626f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')" onclick="selectMousseType(this,'Extra Dark (70%)')"></div>
+                            <div class="mousse-option" style="background-image:url('https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')" onclick="selectMousseType(this,'Milk Chocolate')"></div>
+                            <div class="mousse-option" style="background-image:url('https://images.unsplash.com/photo-1552689486-f6773047d19f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')" onclick="selectMousseType(this,'White Chocolate')"></div>
+                        </div>
+                        <input type="text" id="selectedMousseType" value="Dark & Milk Blend" readonly class="form-input" style="margin-top:10px">
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Accompaniments</span>
+                        <div class="flavor-options">
+                            <div class="flavor-option selected">Fresh Berries</div>
+                            <div class="flavor-option">Caramel Sauce</div>
+                            <div class="flavor-option">Raspberry Coulis</div>
+                            <div class="flavor-option">None</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <span class="option-title">Special Occasion</span>
+                        <input type="text" class="form-input" placeholder="Anniversary, birthday, etc." id="specialOccasion">
+                    </div>
+                </div>
+                
+                <div class="quantity-selector">
+                    <button class="quantity-btn" id="decreaseQty">-</button>
+                    <input type="number" class="quantity-input" id="quantity" value="1" min="1">
+                    <button class="quantity-btn" id="increaseQty">+</button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-chocolate btn-primary" id="addToCart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn-secondary" id="reserveForEvent">
+                        <i class="fas fa-calendar-alt"></i> Reserve for Event
+                    </button>
+                </div>
+                
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-thermometer-three-quarters chocolate-theme"></i>
+                        <span>Best served slightly chilled</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock meta-icon"></i>
+                        <span>Requires 48 hours notice</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-leaf meta-icon"></i>
+                        <span>Vegetarian (contains dairy and eggs)</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-award chocolate-theme"></i>
+                        <span>2023 Best Dessert Award winner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Event Reservation Form -->
+    <div class="order-form-container" id="eventForm" style="background:#f5f0eb;">
+        <h2 class="order-form-title"><span class="chocolate-theme">Event</span> Reservation</h2>
+        <form>
+            <div class="form-group">
+                <label class="form-label">Event Date</label>
+                <input type="date" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Event Type</label>
+                <select class="form-input">
+                    <option>Wedding</option>
+                    <option>Birthday</option>
+                    <option>Anniversary</option>
+                    <option>Corporate Event</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Guest Count</label>
+                <input type="number" class="form-input" min="10">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Special Requests</label>
+                <textarea class="form-input form-textarea" placeholder="Custom decorations, dietary restrictions, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Selected Cake</label>
+                <input type="text" class="form-input" value="Chocolate Mousse" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Selected Chocolate Type</label>
+                <input type="text" class="form-input" id="formMousseType" readonly>
+            </div>
+            
+            <button type="submit" class="form-submit btn-chocolate">Reserve for Event</button>
+        </form>
+    </div>
+
+    <script>
+        // Image Gallery Functionality
+        function changeImage(element) {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            const newSrc = element.src.replace('200', '800');
+            mainImage.src = newSrc;
+            
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            element.classList.add('active');
+        }
+        
+        // Mousse Type Selection
+        function selectMousseType(element, mousseType) {
+            const mousseOptions = document.querySelectorAll('.mousse-option');
+            mousseOptions.forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('selectedMousseType').value = mousseType;
+            document.getElementById('formMousseType').value = mousseType;
+        }
+        
+        // Quantity Controls
+        document.getElementById('decreaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantity');
+            if (parseInt(qtyInput.value) > 1) {
+                qtyInput.value = parseInt(qtyInput.value) - 1;
+            }
+        });
+        
+        document.getElementById('increaseQty').addEventListener('click', function() {
+            const qtyInput = document.getElementById('quantity');
+            qtyInput.value = parseInt(qtyInput.value) + 1;
+        });
+        
+        // Accompaniment Selection
+        const accompanimentOptions = document.querySelectorAll('.flavor-option');
+        accompanimentOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                accompanimentOptions.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        
+        // Reserve for Event Button
+        document.getElementById('reserveForEvent').addEventListener('click', function() {
+            const mousseType = document.getElementById('selectedMousseType').value;
+            document.getElementById('formMousseType').value = mousseType;
+            
+            document.getElementById('eventForm').style.display = 'block';
+            window.scrollTo({
+                top: document.getElementById('eventForm').offsetTop - 20,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Add to Cart
+        document.getElementById('addToCart').addEventListener('click', function() {
+            const occasion = document.getElementById('specialOccasion').value;
+            const mousseType = document.getElementById('selectedMousseType').value;
+            
+            if(occasion) {
+                alert(`${mousseType} mousse cake for ${occasion} added to cart!`);
+            } else {
+                alert(`${mousseType} mousse cake added to cart!`);
+            }
+        });
+    </script>
+</body>
+</html>

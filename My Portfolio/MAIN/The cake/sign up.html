@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | THE CAKE - Premium Artisan Bakery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+<style>/* Sign Up Page Styles */
+.signup-hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/banner\ new.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.signup-section {
+    padding: 0 0 80px;
+}
+
+.signup-form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.signup-form {
+    flex: 1 1 400px;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.signup-benefits {
+    flex: 1 1 400px;
+    padding: 20px;
+}
+
+/* Form elements */
+.signup-form .form-group {
+    margin-bottom: 25px;
+}
+
+.signup-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="tel"],
+.signup-form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.signup-form input:focus {
+    outline: none;
+    border-color: #d4a762;
+    box-shadow: 0 0 0 2px rgba(212, 167, 98, 0.2);
+}
+
+/* Checkboxes */
+.signup-form .checkbox-group {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.signup-form .checkbox-group input {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Button */
+.signup-form .signup-button {
+    width: 100%;
+    padding: 15px;
+    background: #d4a762;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.signup-form .signup-button:hover {
+    background: #c29552;
+}
+
+/* Links */
+.signup-form .login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.signup-form .login-link a {
+    color: #d4a762;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Benefits section */
+.signup-benefits h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.signup-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.signup-benefits li {
+    margin-bottom: 15px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.signup-benefits .gold-icon {
+    color: #d4a762;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+/* Social signup */
+.signup-benefits .social-signup {
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
+
+.signup-benefits .social-signup p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.signup-benefits .social-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.signup-benefits .social-button {
+    flex: 1 1 150px;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.signup-benefits .social-button.facebook {
+    color: #3b5998;
+    border-color: #3b5998;
+}
+
+.signup-benefits .social-button.google {
+    color: #db4437;
+    border-color: #db4437;
+}
+
+.signup-benefits .social-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .signup-hero {
+        height: 250px;
+        padding: 0 20px;
+    }
+    
+    .signup-form {
+        padding: 25px;
+    }
+    
+    .signup-form-container {
+        gap: 30px;
+        padding: 0 20px;
+    }
+}</style>
+
+  </head>
+<body>
+    <!-- Navbar -->
+    <div class="products-navbar">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <span class="gold-text">THE</span> CAKE
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Menu</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="site map.html">Site map</a></li>
+                    <li><a href="sign up.html" class="active">Sign up</a></li>
+                    <li><a href="contect.html" class="cta-button">Contect us</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Sign Up Hero Section -->
+    <header class="signup-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Join Our Cake Community</h1>
+                <p>Sign up for exclusive offers, early access to new products, and special members-only events</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sign Up Form -->
+    <section class="signup-section">
+        <div class="container">
+            <div class="signup-form-container">
+                <form class="signup-form" id="signupForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                        <small>Minimum 8 characters with at least 1 number</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter" checked>
+                        <label for="newsletter">Subscribe to our newsletter</label>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the <a href="terms.html">Terms & Conditions</a> and <a href="privacy.html">Privacy Policy</a></label>
+                    </div>
+                    
+                    <button type="submit" class="signup-button">Create Account</button>
+                    
+                    <div class="login-link">
+                        Already have an account? <a href="login.html">Log in</a>
+                    </div>
+                </form>
+                
+                <div class="signup-benefits">
+                    <h3>Members Enjoy:</h3>
+                    <ul>
+                        <li><i class="fas fa-crown gold-icon"></i> 10% off first order</li>
+                        <li><i class="fas fa-birthday-cake gold-icon"></i> Birthday surprises</li>
+                        <li><i class="fas fa-clock gold-icon"></i> Early access to new products</li>
+                        <li><i class="fas fa-calendar-alt gold-icon"></i> Exclusive event invitations</li>
+                        <li><i class="fas fa-gift gold-icon"></i> Special member-only discounts</li>
+                    </ul>
+                    
+                    <div class="social-signup">
+                        <p>Or sign up with:</p>
+                        <div class="social-buttons">
+                            <button class="social-button facebook">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                            <button class="social-button google">
+                                <i class="fab fa-google"></i> Google
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Form validation
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert("Passwords don't match!");
+                return;
+            }
+            
+            if (password.length < 8 || !/\d/.test(password)) {
+                alert("Password must be at least 8 characters with at least 1 number");
+                return;
+            }
+            
+            // Form is valid - you would typically send to server here
+            alert("Account created successfully! Welcome to THE CAKE family.");
+            this.reset();
+        });
+    </script>
+</body>
+</html>
